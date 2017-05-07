@@ -1,0 +1,19 @@
+Problem Statement 1 and Problem Statement 2
+
+Code :
+
+a = load '/user/acadgild/TravelData.txt' using PigStorage('\t') AS (a1,a2,a3,a4,a5,a6,a7,a8,a9,b1,b2,b3,b4,b5,b6);
+b = Group a BY a3;
+d = FOREACH b {
+GENERATE group AS dest,count(a.a3) as desnt;
+};
+f = ORDER d BY desnt DESC;
+h = LIMIT f 20;
+dump h;
+c = Group a BY a2;
+e = FOREACH c {
+GENERATE group AS dest,count(a.a2) as depnt;
+};
+g = ORDER e BY depnt DESC;
+i = LIMIT g 20;
+dump i;
